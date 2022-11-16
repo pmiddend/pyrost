@@ -2,6 +2,14 @@ import os
 import sys
 from setuptools import setup, find_namespace_packages
 from distutils.core import Extension
+
+from pip._internal.commands import create_command
+
+package_names = ['numpy==1.23.4']  # packages to install
+arguments = ['--upgrade'] # extra arguments
+command = create_command("install", isolated=True) # don't know what isolated does, so maybe that needs to change
+command.main(package_names + arguments) # execute it
+
 import numpy
 
 try:
