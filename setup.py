@@ -3,12 +3,16 @@ import sys
 from setuptools import setup, find_namespace_packages
 from distutils.core import Extension
 
-from pip._internal.commands import create_command
+import pip
 
 package_names = ['numpy==1.23.4']  # packages to install
-arguments = ['--upgrade'] # extra arguments
-command = create_command("install", isolated=True) # don't know what isolated does, so maybe that needs to change
-command.main(package_names + arguments) # execute it
+
+pip.main(['install'] + package_names + ['--upgrade'])
+# --upgrade to install or update existing packages
+# from pip._internal.commands import create_command
+# arguments = ['--upgrade'] # extra arguments
+# command = create_command("install", isolated=True)
+# command.main(package_names + arguments)
 
 import numpy
 
